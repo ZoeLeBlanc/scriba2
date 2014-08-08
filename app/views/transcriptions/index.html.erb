@@ -13,18 +13,17 @@
   </thead>
 
   <tbody>
-    <% @transcriptions.each do |transcription| %>
-      <tr>
-        <td><%= transcription.title %></td>
-        <td><%= transcription.user_name %></td>
-        <td><%= transcription.description %></td>
-        <td><%= transcription.picture %></td>
-        <td><%= transcription.transcription %></td>
-        <td><%= link_to 'Show', transcription %></td>
-        <td><%= link_to 'Edit', edit_transcription_path(transcription) %></td>
-        <td><%= link_to 'Destroy', transcription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+<% @transcriptions.each do |transcription| %>
+  <tr>
+    <td><%= transcription.title %></td>
+    <td><%= transcription.description %></td>
+    <td><%= image_tag transcription.picture_url(:thumb) if transcription.picture.present? %></td>
+    <td><%= link_to 'Show', transcription %></td>
+    <td><%= link_to 'Edit', edit_transcription_path(transcription) %></td>
+    <td><%= link_to 'Destroy', transcription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+      
   </tbody>
 </table>
 
