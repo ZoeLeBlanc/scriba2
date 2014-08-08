@@ -1,14 +1,21 @@
 language: ruby
-bundler_args: --without production
+bundler_args: "--without production"
 rvm:
-  - 2.0.0
-  - 2.1.2
+- 2.0.0
+- 2.1.2
 env:
-  - DB=sqlite
-  - DB=postgresql
+- DB=sqlite
+- DB=postgresql
 before_script:
-  - psql -c 'create database scriba_test' -U postgres
+- psql -c 'create database scriba_test' -U postgres
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rake db:test:prepare
-  - bundle exec rspec spec
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec spec
+deploy:
+  provider: heroku
+  api_key:
+    secure: KUK+re8Guse8ryOoQWAErJUFWNMUKHZwNHufINhn1/xreTyz/2P7XmJqinn1561TmznWK2GzLvXSC+DpAFQXII4AfCdv1qaCiVa5dj6upqFKmygOxRPvQ2AptprBOJnkv0eTxyfMAuvDh6Arw28smUhw+nbuwXa20Gykx4CqFGw=
+  app: morning-river-6467
+  on:
+    repo: ZoeLeBlanc/scriba2
